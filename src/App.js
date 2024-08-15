@@ -6,13 +6,7 @@ import PostForm from './components/PostForm';
 
 function App() {
 
-  const [posts, setPosts] = useState([
-    {id: 1, title: 'JavaScript - язык программирования', body: 'description'},
-    {id: 2, title: 'JavaScript - язык программирования', body: 'description'},
-    {id: 3, title: 'JavaScript - язык программирования', body: 'description'},
-    {id: 4, title: 'JavaScript - язык программирования', body: 'description'},
-    {id: 5, title: 'JavaScript - язык программирования', body: 'description'},
-  ])
+  const [posts, setPosts] = useState([])
 
   const deletePost = (post) => {
     setPosts(posts.filter(el => el.id !== post.id))
