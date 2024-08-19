@@ -1,14 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import './styles/App.css';
 import { useState } from 'react';
 import PostsList from './components/PostsList';
 import PostForm from './components/PostForm';
-import Select from './components/UI/select/Select';
+import PostFilter from './components/PostFilter';
 
 function App() {
 
   const [posts, setPosts] = useState([])
-  const [selectedSort, setSelectedSort] = useState('')
+  const [filter, setFilter] = useState({sort: '', query: ''})
+  
+  const sortedPosts = useMemo(() => {
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]))
+    }
+    return posts
+
+  }, [filter.sort, posts]) 
+  
+  const sortedAndSearchedPosts = useMemo(() => {
+    return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase()))
+  }, [filter.query, sortedPosts])
 
   const deletePost = (post) => {
     setPosts(posts.filter(el => el.id !== post.id))
@@ -19,25 +31,15 @@ function App() {
     setPosts([...posts, newPost])
   }
 
-  const sortPosts = (value) => {
-    setSelectedSort(value)
-    setPosts([...posts].sort((a, b) => a[value].localeCompare(b[value])))
-  }
   
   return (
     <div className="App">
       <PostForm create={createPost} posts={posts}/>
       <div>
       <hr style={{margin: '15px 0'}}/>
-        <Select defaultValue={"Сортировка по:"} options={[
-          {value: 'title', name:'По названию'},
-          {value: 'body', name:'По описанию'}
-        ]}
-        value={selectedSort}
-        onChange={sortPosts}
-        />
+      <PostFilter filter={filter} setFilter={setFilter}/>
       </div>
-      <PostsList posts={posts} title={"Посты про JS"} deletePost={deletePost}/>
+      <PostsList posts={sortedAndSearchedPosts} title={"Посты про JS"} deletePost={deletePost}/>
     </div>
   );
 }
