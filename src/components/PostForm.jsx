@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Input from './UI/input/Input'
 import Button from './UI/button/Button'
 
-const PostForm = ({create, posts}) => {
+const PostForm = ({create, setModal}) => {
 
   const [post, setPost] = useState({title: '', body: ''})
 
@@ -12,6 +12,7 @@ const PostForm = ({create, posts}) => {
     const newPost =  {id: Date.now(), ...post}
     create(newPost)
     setPost({title: '', body: ''})
+    setModal(false)
   }
     return (
         <form>

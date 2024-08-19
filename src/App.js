@@ -4,11 +4,14 @@ import { useState } from 'react';
 import PostsList from './components/PostsList';
 import PostForm from './components/PostForm';
 import PostFilter from './components/PostFilter';
+import Modal from './components/UI/modal/Modal';
+import Button from './components/UI/button/Button';
 
 function App() {
 
   const [posts, setPosts] = useState([])
   const [filter, setFilter] = useState({sort: '', query: ''})
+  const [modal, setModal] = useState(false)
   
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
@@ -34,7 +37,12 @@ function App() {
   
   return (
     <div className="App">
-      <PostForm create={createPost} posts={posts}/>
+      <Button onClick={() => setModal(true)}>
+        Создать пост
+      </Button>
+      <Modal visible={modal} setVisible={setModal}>
+        <PostForm create={createPost} setModal={setModal}/>
+      </Modal>
       <div>
       <hr style={{margin: '15px 0'}}/>
       <PostFilter filter={filter} setFilter={setFilter}/>
