@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import './styles/App.css';
 import { useState } from 'react';
 import PostsList from './components/PostsList';
@@ -6,22 +6,24 @@ import PostForm from './components/PostForm';
 import PostFilter from './components/PostFilter';
 import Modal from './components/UI/modal/Modal';
 import Button from './components/UI/button/Button';
+import { usePosts } from './components/hooks/usePost';
+import axios from 'axios';
 
 function App() {
     const [posts, setPosts] = useState([]);
     const [filter, setFilter] = useState({ sort: '', query: '' });
     const [modal, setModal] = useState(false);
 
-    const sortedPosts = useMemo(() => {
-        if (filter.sort) {
-            return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-        }
-        return posts;
-    }, [filter.sort, posts]);
+    const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
-    const sortedAndSearchedPosts = useMemo(() => {
-        return sortedPosts.filter(el => el.title.toLowerCase().includes(filter.query.toLowerCase()));
-    }, [filter.query, sortedPosts]);
+    async function fetchPosts() {
+        const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+        setPosts(response.data);
+    }
+
+    useEffect(() => {
+        fetchPosts();
+    }, []);
 
     const deletePost = post => {
         setPosts(posts.filter(el => el.id !== post.id));
