@@ -8,7 +8,7 @@ const PostItem = ({ deletePost, labelNumber, ...props }) => {
         <div className={'post'}>
             <div className={'post__content'}>
                 <strong>
-                    {labelNumber}. {props.post.id}
+                    {labelNumber}. {props.post.title}
                 </strong>
                 <div>{props.post.body}</div>
             </div>
