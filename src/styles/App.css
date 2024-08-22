@@ -40,3 +40,22 @@
   transform: translateX(-350px);
   transition: all 500ms ease-in;
 }
+
+.page__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1rem;
+  margin-top: 10px;
+}
+
+.page {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.page__current {
+  border: 2px solid orange;
+  font-weight: bold;
+}
