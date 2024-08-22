@@ -3,6 +3,7 @@ import App from '../../App';
 import About from '../pages/About';
 import Posts from '../pages/Posts';
 import Error from '../pages/Error';
+import PostIdPage from '../pages/PostIdPage';
 
 const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: '/posts',
                 element: <Posts />,
+            },
+            {
+                path: '/posts/:postId',
+                element: <PostIdPage />,
             },
         ],
         errorElement: <Error />,

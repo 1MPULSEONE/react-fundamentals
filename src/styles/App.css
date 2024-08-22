@@ -33,6 +33,14 @@
   transition: all 500ms ease-in;
 }
 
+.post__btns {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  align-items: center;
+  padding: 1rem;
+}
+
 .post-exit {
   opacity: 1;
 }
