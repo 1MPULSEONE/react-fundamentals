@@ -29,6 +29,7 @@ const PostIdPage = () => {
 
     return (
         <div>
+            {postError && <h1>Возникла ошибка</h1>}
             {isPostLoading ? (
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Loader />
@@ -44,6 +45,7 @@ const PostIdPage = () => {
                     </div>
                 </>
             )}
+            {commentsError && <h1>Возникла ошибка</h1>}
             {areCommentsLoading ? (
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <Loader />
