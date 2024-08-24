@@ -1,38 +1,12 @@
-import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import App from '../../App';
-import About from '../pages/About';
-import Posts from '../pages/Posts';
-import Error from '../pages/Error';
-import PostIdPage from '../pages/PostIdPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { privateRoutes, publicRoutes } from '../../routes';
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <App />,
-        children: [
-            {
-                path: '/',
-                element: <Navigate to='/posts' replace />,
-            },
-            {
-                path: '/about',
-                element: <About />,
-            },
-            {
-                path: '/posts',
-                element: <Posts />,
-            },
-            {
-                path: '/posts/:postId',
-                element: <PostIdPage />,
-            },
-        ],
-        errorElement: <Error />,
-    },
-]);
+const privateRouter = createBrowserRouter(privateRoutes);
+const publicRouter = createBrowserRouter(publicRoutes);
 
 const AppRouter = () => {
-    return <RouterProvider router={router} />;
+    const isAuth = true;
+    return <>{isAuth ? <RouterProvider router={privateRouter} /> : <RouterProvider router={publicRouter} />}</>;
 };
 
 export default AppRouter;
