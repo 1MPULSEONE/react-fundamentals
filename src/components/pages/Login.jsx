@@ -1,4 +1,4 @@
-import { useAuth } from '../hooks/AuthContext';
+import { useAuth } from '../hooks/authContext';
 import Button from '../UI/button/Button';
 import Input from '../UI/input/Input';
 

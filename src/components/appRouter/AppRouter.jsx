@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../../routes';
-import { useAuth } from '../hooks/AuthContext';
+import { useAuth } from '../hooks/authContext';
 
 const privateRouter = createBrowserRouter(privateRoutes);
 const publicRouter = createBrowserRouter(publicRoutes);

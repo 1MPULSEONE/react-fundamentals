@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import Button from '../button/Button';
-import { useAuth } from '../../hooks/AuthContext';
+import { useAuth } from '../../hooks/authContext';
 
 const Navbar = () => {
     const { setIsAuth } = useAuth();
