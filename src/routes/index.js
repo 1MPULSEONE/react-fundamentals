@@ -49,6 +49,18 @@ export const publicRoutes = [
                 path: '/login',
                 element: <Login />,
             },
+            {
+                path: '/about',
+                element: <Navigate to='/login' replace />,
+            },
+            {
+                path: '/posts',
+                element: <Navigate to='/login' replace />,
+            },
+            {
+                path: '/posts/:postId',
+                element: <Navigate to='/login' replace />,
+            },
         ],
         errorElement: <Error />,
     },

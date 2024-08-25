@@ -1,11 +1,13 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../../routes';
+import { useAuth } from '../hooks/AuthContext';
 
 const privateRouter = createBrowserRouter(privateRoutes);
 const publicRouter = createBrowserRouter(publicRoutes);
 
 const AppRouter = () => {
-    const isAuth = true;
+    const { isAuth } = useAuth();
+
     return <>{isAuth ? <RouterProvider router={privateRouter} /> : <RouterProvider router={publicRouter} />}</>;
 };
 

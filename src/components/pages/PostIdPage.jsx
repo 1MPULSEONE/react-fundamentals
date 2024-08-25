@@ -14,7 +14,6 @@ const PostIdPage = () => {
     });
     const [fetchComments, areCommentsLoading, commentsError] = useFetching(async id => {
         const response = await PostService.getCommentsByPostId(id);
-        console.log(response.data);
         setComments(response.data);
     });
 
@@ -22,10 +21,6 @@ const PostIdPage = () => {
         fetchPost(params.postId);
         fetchComments(params.postId);
     }, []);
-
-    useEffect(() => {
-        console.log(post);
-    }, [post]);
 
     return (
         <div>
