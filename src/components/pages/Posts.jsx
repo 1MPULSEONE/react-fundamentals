@@ -12,7 +12,6 @@ import Loader from '../../components/UI/loader/Loader';
 import PostsList from '../../components/PostsList';
 import Pagination from '../../components/UI/pagination/Pagination';
 import { useObserver } from '../hooks/useObserver';
-import Select from '../UI/select/Select';
 
 const Posts = () => {
     const [posts, setPosts] = useState([]);
